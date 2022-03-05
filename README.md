@@ -7,21 +7,23 @@ This repository contains all the needed dependecies to run the ALLMT. ALLMT is p
 
 ## Dependecies
 
-* BLAST
-* SPADES
-* MEGAHIT
-* BOWTIE2
-* SAMTOOLS
-* BEDTOOLS
-* SEQtk
-* Python (3.10) Dependencies
+The dependecies must be installed in PATH variable of the system. Meeting the specific versions as described below
+
+* BLAST (2.11.0)
+* SPADES (v3.14.1)
+* MEGAHIT (v1.2.9)
+* BOWTIE2 (2.3.4.1)
+* SAMTOOLS (1.7)
+* BEDTOOLS (v2.26.0)
+* SEQtk (1.2-r94)
+* Python (3.6.9) Dependencies
   * argparse
   * shutil
   * subprocess
-  * typing_extensions
-  * numpy
-  * pandas
-  * whichcraft
+  * typing_extensions (3.10.0.2)
+  * numpy (1.19.5)
+  * pandas (1.1.4)
+  * whichcraft (0.6.1)
 
 ## Strategy of ALLMT
 
