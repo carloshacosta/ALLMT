@@ -11,12 +11,12 @@ ___
 
 The dependecies must be installed in PATH variable of the system. Meeting the specific versions as described below
 
-* BLAST (2.11.0)
-* SPADES (v3.14.1)
-* MEGAHIT (v1.2.9)
-* BOWTIE2 (2.3.4.1)
-* SAMTOOLS (1.7)
-* BEDTOOLS (v2.26.0)
+* blast (2.11.0)
+* SPAdes (v3.14.1)
+* megahit (v1.2.9)
+* bowtie2 (2.3.4.1)
+* samtools (1.7)
+* bedtools (v2.26.0)
 * SEQtk (1.2-r94)
 * Python (3.6.9) Dependencies
   * argparse
@@ -42,21 +42,23 @@ The _five ranks based system_ acts through the comparision of the aspects of tha
 
 The installation of ALLMT can be done by cloning the repo inside the destination folder
 
-.. code-block:: text
+```
   git clone https://github.com/carloshacosta/ALLMT
   cd /ALLMT
   chmod +x all_mt.py
-
+```
 
 ## Usage
 ___
 
 The basic usage of ALLMT requires at least four files as input:
-* 1 Reference Mitochondrial Genome (.fasta)
-* 1 Contig file from MEGAHIT/SPades assembly only - at the moment (.fasta)
-* 2 Paired-end reads file (.fastq)
+* 1 Reference Mitochondrial Genome `--m` (.fasta)
+* 1 Contig file from MEGAHIT/SPades assembly only `-assembler`(.fasta)
+* 2 Paired-end reads file `-R1` and `-R2` (.fastq)
   * Note: ALLMT also support more 2 unpaired read files, forward and reverse
-  * Note 2: --db function also allows user to declare the (.fasta) containing all the reads in fasta format, if it's not, ALLMT will create this database. 
+  * Note 2: `--db` also allows user to declare the (.fasta) containing all the reads in fasta format, if it's not, ALLMT will create this database. 
 
-.. code-block:: text
-  python3 all_mt.py --m <genome.fasta> -contigs <contigs.fasta> -assembler megahit -R1 <paired1.fastq> -R2 <paired2.fastq> -db <database> -o <output_dir>
+```  
+python3 all_mt.py --m <genome.fasta> -contigs <contigs.fasta> -assembler megahit -R1 <paired1.fastq> -R2 <paired2.fastq> -db <database> -o <output_dir>
+```
+Users can also change the identity threshold to `-id` (Default: 95)
