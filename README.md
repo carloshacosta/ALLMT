@@ -18,7 +18,7 @@ The _five ranks based system_ acts through the comparision of the aspects of tha
 * **Rank 4** - Contig remapping with original reads, using Bowtie2 and Samtools, and search for gaps inside/outside the hit region (0 - gap inside; 0.5 - gap outside; 1 - No gaps found)
 * **Rank 5** - Reassembly of contigs using the remapped reads
 
-![](/home/carloscosta/Desktop/Scripts_PYTHON/teste/NUMT_scheme.png)
+![](images/NUMT_scheme.png)
 ___
 
 ## Dependencies 
