@@ -33,9 +33,6 @@ The dependecies must be installed in PATH variable of the system. Meeting the sp
 * bedtools (v2.26.0)
 * SEQtk (1.2-r94)
 * Python (3.6.9) Dependencies
-  * argparse
-  * shutil
-  * subprocess
   * typing_extensions (3.10.0.2)
   * numpy (1.19.5)
   * pandas (1.1.4)
@@ -43,6 +40,12 @@ The dependecies must be installed in PATH variable of the system. Meeting the sp
 
 ### Installing Dependecies
 
+At this moment, the easiest way to install all the Python dependencies required to run ALLMT is to create a *conda enviroment*, using CONDA.
+
+```
+  conda env create -f env/ALLMT.yaml
+  conda activate ALLMT
+```
 
 ## Installation
 
