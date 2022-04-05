@@ -38,15 +38,6 @@ The dependecies must be installed in PATH variable of the system. Meeting the sp
   * pandas (1.1.4)
   * whichcraft (0.6.1)
 
-### Installing Dependecies
-
-At this moment, the easiest way to install all the Python dependencies required to run ALLMT is to create a *conda enviroment*, using CONDA.
-
-```
-  conda env create -f env/ALLMT.yaml
-  conda activate ALLMT
-```
-
 ## Installation
 
 The installation of ALLMT can be done by cloning the repo inside the destination folder
@@ -55,6 +46,14 @@ The installation of ALLMT can be done by cloning the repo inside the destination
   git clone https://github.com/carloshacosta/ALLMT
   cd /ALLMT
   chmod +x all_mt.py
+```
+### Installing Dependecies
+
+At this moment, once you've downloaded ALLMT, the easiest way to install all the Python dependencies required to run ALLMT is to create a *conda enviroment*, using CONDA.
+
+```
+  conda env create -f env/ALLMT.yaml
+  conda activate ALLMT
 ```
 
 ## Usage
