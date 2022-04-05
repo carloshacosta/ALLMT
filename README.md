@@ -1,5 +1,5 @@
 # ALLMT - NUMT Searching Tool
-___
+
 
 ## About ALLMT
 ___
@@ -41,6 +41,9 @@ The dependecies must be installed in PATH variable of the system. Meeting the sp
   * pandas (1.1.4)
   * whichcraft (0.6.1)
 
+### Installing Dependecies
+
+
 ## Installation
 
 The installation of ALLMT can be done by cloning the repo inside the destination folder
@@ -58,9 +61,15 @@ The basic usage of ALLMT requires at least four files as input:
 * 1 Contig file from MEGAHIT/SPades assembly only `-assembler`(.fasta)
 * 2 Paired-end reads file `-R1` and `-R2` (.fastq)
   * Note: ALLMT also support more 2 unpaired read files, forward and reverse
-  * Note 2: `--db` also allows user to declare the (.fasta) containing all the reads in fasta format, if it's not, ALLMT will create this database. 
+  * Note 2: `--db` also allows user to declare the (.fasta) containing all the reads in fasta format, if it's not, ALLMT will create inside `-o <output_dir>` database. 
+  * *ps: Note that if you rewrite the folder `--db` will also be deleted*
 
 ```  
 python3 all_mt.py --m <genome.fasta> -contigs <contigs.fasta> -assembler megahit -R1 <paired1.fastq> -R2 <paired2.fastq> -db <database> -o <output_dir>
 ```
-Users can also change the identity threshold to `-id` (Default: 95)
+### Optional 
+
+* Identity Threshold: Users can also change the BLASTN identity threshold by setting the `-id` function to a float value (Default: 95)
+    * Note that if the set value doesn't match any contig hit, ALL_MT will print a message in the screen
+* Flanking Threshold: User can also change the integer value for flank call in both 3' and 5' of sequence strand, by setting `-f` function (Default: 100)
+    

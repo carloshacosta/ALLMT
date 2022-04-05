@@ -45,16 +45,16 @@ def numts_LVL1(file1, identity): #If values from BLAST record are lower than set
 
 #Step 2) Identification of nuclear flanking regions in 5' in each contig
 
-def numts_LVL2(numts_LVL1):
+def numts_LVL2(numts_LVL1, flank):
 	try:
 		pos = []
 		neg = []
 		numts_pos = numts_LVL1.loc[numts_LVL1['sstrand'].str.match('plus')]
 		pos = numts_pos.copy()
-		pos["LVL2"] = pos["sstart"].apply(lambda x: '1' if x >= 100 else '0')
+		pos["LVL2"] = pos["sstart"].apply(lambda x: '1' if x >= flank else '0')
 		neg = numts_LVL1.loc[numts_LVL1['sstrand'].str.match('minus')]
 		neg = neg.copy()
-		neg["LVL2"]= neg["send"].apply(lambda x: '1' if x >= 100 else '0')
+		neg["LVL2"]= neg["send"].apply(lambda x: '1' if x >= flank else '0')
 		concatenate = [pos, neg]
 		results = pd.concat(concatenate)
 		return results
@@ -69,16 +69,16 @@ def numts_LVL2(numts_LVL1):
 #For plus strand --- if the length of contig minus 100 is greater than final position of the alignment, print "1", else "0"
 #For minus strand --- if the length of contig minus 100 is greater than initial position of the alignment, print "1", else "0"
 
-def numts_LVL3(numts_LVL2):
+def numts_LVL3(numts_LVL2, flank):
 	try:
 		pos = []
 		neg = []
 		pos = numts_LVL2.loc[numts_LVL2["sstrand"].str.match('plus')].copy()
-		pos.loc[pos["slen"] - pos["send"] >= 100, 'LVL3'] = "1"
-		pos.loc[pos["slen"] - pos["send"] < 100, 'LVL3'] = "0"
+		pos.loc[pos["slen"] - pos["send"] >= flank, 'LVL3'] = "1"
+		pos.loc[pos["slen"] - pos["send"] < flank, 'LVL3'] = "0"
 		neg = numts_LVL2.loc[numts_LVL2["sstrand"].str.match('minus')].copy()
-		neg.loc[neg["slen"] - neg["sstart"] >= 100, 'LVL3'] = "1"
-		neg.loc[neg["slen"] - neg["sstart"] < 100, 'LVL3'] = "0"
+		neg.loc[neg["slen"] - neg["sstart"] >= flank, 'LVL3'] = "1"
+		neg.loc[neg["slen"] - neg["sstart"] < flank, 'LVL3'] = "0"
 		concat = [pos, neg]
 		results = pd.concat(concat)
 		return results	
@@ -248,7 +248,6 @@ def numts_LVL5(numts_list, mitochondrial_genome, numts_LVL4, folder):
 		blast_table = pd.read_table("{0}/{1}/{1}_blast_score.txt".format(folder,sequence), names = ["qseqid", "sseqid", "slen", "pident", "length", "mismatch", "gapopen", "qstart", "qend", "sstart", "send", "evalue", "bitscore", "sstrand", "score"])
 		if blast_table.empty: #If there's no sequence inside the file
 			LVL5.append(0)
-			#print "			Warning: The sequence {} is empty, this indicates that the reads did not return any valid contig. Probably due to low coverage".format(sequence)
 		else:
 			if len(blast_table.index) == 1:
 				sequence_set = numts_LVL4[numts_LVL4["sseqid"] == sequence]
