@@ -132,18 +132,21 @@ def blastn_database(paired1, paired2, unpaired1, unpaired2,folder):
 	os.system("mkdir {0}/database_folder".format(folder))
 	if unpaired1 and unpaired2:
 		logging.info("\t\tSTEP 4.2.1)Creating unique temporary FASTQ File")
-		total_reads = "cat {0} {1} {2} {3} > {4}/database_folder/total_reads.fastq".format(paired1, paired2, unpaired1, unpaired2, folder)	
+		total_reads = "cat {0} {1} {2} {3} > {4}/database_folder/total_reads.fastq".format(paired1, paired2, unpaired1, unpaired2, folder)
+		os.system(total_reads)
 	else:
-		logging.info("\tSTEP 4.2.1)Creating unique temporary FASTQ File")	
+		logging.info("\t\tSTEP 4.2.1)Creating unique temporary FASTQ File")	
 		total_reads = "cat {0} {1} > {2}/database_folder/total_reads.fastq".format(paired1, paired2,folder)
+		os.system(total_reads)
 	logging.info("\t\tSTEP 4.2.2)Converting FASTQ File into FASTA File")
-	seqtk = "seqtk seq -a {0}/database_folder/total_reads.fastq > {0}/database_folder/total_reads.fasta | rm {0}/database_folder/total_reads.fastq".format(folder) 
+	seqtk = "seqtk seq -A {0}/database_folder/total_reads.fastq > {0}/database_folder/total_reads.fasta".format(folder) 
+	os.system(seqtk)
+	del_fastq = "rm {0}/database_folder/total_reads.fastq".format(folder) #deletes fastq file
+	os.system(del_fastq)	
 	logging.info("\t\tSTEP 4.2.3)Creating reads BLASTDB")
 	blastn_db = "makeblastdb -in {0}/database_folder/total_reads.fasta -dbtype nucl -input_type fasta -out {0}/database_folder/DB 2> /dev/null".format(folder)
-	blastn_file = "{0}/database_folder/DB".format(folder)
-	os.system(total_reads)
-	os.system(seqtk)
 	os.system(blastn_db)		
+	blastn_file = "{0}/database_folder/DB".format(folder)
 	return blastn_file
 
 #A blast of the putative numt - query, and all the reads -subject. From this results, a list containing only the single ID of the reads will be created.

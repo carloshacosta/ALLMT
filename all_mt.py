@@ -124,10 +124,10 @@ contigs_list = numts_contigs_LVL3["sseqid"].values.tolist()
 
 #Creates a dir for each pNUMT based in the list
 if args.assembler == "spades":
-	logging.info('\t\t4.1.1)BlastDB with SPADES contigs')
+	logging.info('\t\t4.1.1) BlastDB with SPADES contigs')
 	nm.dir_LVL_4_spades(contigs_list, args.contig_file,folder)
 elif args.assembler == "megahit":
-	logging.info('\t\t4.1.1)BlastDB with MEGAHIT contigs')
+	logging.info('\t\t4.1.1) BlastDB with MEGAHIT contigs')
 	nm.dir_LVL_4_megahit(contigs_list, args.contig_file,folder)
 else:
 	logging.error("No assembler was declared... exit")
